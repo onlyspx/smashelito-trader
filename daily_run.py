@@ -159,6 +159,8 @@ def main():
     for md_path in md_files:
         text = Path(md_path).read_text(encoding="utf-8")
         levels = parse_post(text)
+        if "weekly" in levels.get("title", "").lower():
+            continue
         plan_date = parse_plan_date(levels)
         if plan_date is None:
             continue
