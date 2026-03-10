@@ -14,7 +14,6 @@ import argparse
 import re
 import sys
 import urllib.request
-import html.parser
 import os
 import glob
 from pathlib import Path
@@ -24,55 +23,11 @@ from pathlib import Path
 # Fair Value Scraper
 # ---------------------------------------------------------------------------
 
-class _IndexArbParser(html.parser.HTMLParser):
-    """Extracts the Fair Value (Premium) number from indexarb.com HTML."""
-
-    def __init__(self):
-        super().__init__()
-        self._in_table = False
-        self._capture_next = False
-        self._headers = []
-        self._current_row = []
-        self._fv_col_index = None
-        self.fair_value = None
-
-    def handle_starttag(self, tag, attrs):
-        if tag == "table":
-            self._in_table = True
-        if self._in_table and tag == "tr":
-            self._current_row = []
-        if self._in_table and tag in ("td", "th"):
-            self._capture_next = True
-
-    def handle_endtag(self, tag):
-        if tag == "table":
-            self._in_table = False
-        if self._in_table and tag == "tr":
-            if self._fv_col_index is None:
-                # Try to find the fair value column header
-                for i, h in enumerate(self._current_row):
-                    if "fair value" in h.lower() or "premium" in h.lower():
-                        self._fv_col_index = i
-                        break
-            else:
-                if len(self._current_row) > self._fv_col_index:
-                    candidate = self._current_row[self._fv_col_index].strip()
-                    try:
-                        self.fair_value = float(candidate)
-                    except ValueError:
-                        pass
-        if self._in_table and tag in ("td", "th"):
-            self._capture_next = False
-
-    def handle_data(self, data):
-        if self._capture_next and self._in_table:
-            text = data.strip()
-            if text:
-                self._current_row.append(text)
-
-
 def fetch_fair_value() -> float | None:
     """Scrape current ES/SPX fair value premium from indexarb.com.
+
+    The S&P 500 row layout is: Label | SA | ST | FV | BT | BA
+    We skip the label cell (matching S&amp;P), skip SA and ST, then capture FV.
 
     Returns the fair value float, or None on failure.
     """
@@ -86,15 +41,14 @@ def fetch_fair_value() -> float | None:
             html_bytes = resp.read()
         html_text = html_bytes.decode("utf-8", errors="replace")
 
-        parser = _IndexArbParser()
-        parser.feed(html_text)
-
-        if parser.fair_value is not None:
-            return parser.fair_value
-
-        # Fallback regex scan on raw text for patterns like "5.59"
-        # Look for the fair value line directly in the page source
-        match = re.search(r"Fair\s+Value.*?([\-]?\d+\.\d+)", html_text, re.IGNORECASE)
+        # Match S&P row: label cell → skip 2 TDs (SA, ST) → capture FV cell
+        match = re.search(
+            r'S&amp;P[\s\S]*?</TD>'        # skip label cell
+            r'(?:[\s\S]*?</TD>){2}'         # skip SA and ST
+            r'[\s\S]*?<TD[^>]*>\s*([-]?\d+(?:\.\d+)?)',  # capture FV
+            html_text,
+            re.IGNORECASE,
+        )
         if match:
             return float(match.group(1))
 

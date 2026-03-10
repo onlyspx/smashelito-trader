@@ -1,0 +1,49 @@
+name: Daily ES Analysis
+
+on:
+  schedule:
+    - cron: '30 13 * * 1-5'   # 8:30am ET (UTC-5), weekdays only
+  workflow_dispatch:             # allow manual trigger
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install substack_save
+        run: |
+          cd substack-save
+          pip install -e .
+
+      - name: Fetch new posts
+        run: |
+          python3 -m substack_save.cli newsletter.smashelito.com ./posts --skip-existing
+
+      - name: Run daily analysis
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          python3 daily_run.py
+
+      - name: Commit and push new files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add posts/ analysis/
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: daily fetch and analysis $(date -u '+%Y-%m-%d')"
+            git push
+          fi
