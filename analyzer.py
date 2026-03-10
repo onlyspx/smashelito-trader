@@ -41,11 +41,13 @@ def fetch_fair_value() -> float | None:
             html_bytes = resp.read()
         html_text = html_bytes.decode("utf-8", errors="replace")
 
-        # Match S&P row: label cell → skip 2 TDs (SA, ST) → capture FV cell
+        # Match S&P data row (label contains S&amp;P<BR>) → skip actual premium + sell
+        # threshold → capture Fair Value
+        # Columns: label | actual premium | sell threshold | Fair Value | buy threshold
         match = re.search(
-            r'S&amp;P[\s\S]*?</TD>'        # skip label cell
-            r'(?:[\s\S]*?</TD>){2}'         # skip SA and ST
-            r'[\s\S]*?<TD[^>]*>\s*([-]?\d+(?:\.\d+)?)',  # capture FV
+            r'S&amp;P<BR>[\s\S]*?</TD>'    # skip label cell (anchored to data row)
+            r'(?:[\s\S]*?</TD>){2}'         # skip actual premium and sell threshold
+            r'[\s\S]*?<TD[^>]*>\s*([-]?\d+(?:\.\d+)?)',  # capture Fair Value
             html_text,
             re.IGNORECASE,
         )
