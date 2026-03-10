@@ -8,16 +8,25 @@ No installation required — Python 3 stdlib only.
 
 ```
 smashelito-trader/
-├── posts/       ← downloaded Smashelito posts (markdown)
-├── analyzer.py  ← main script
+├── posts/           ← downloaded Smashelito posts (markdown)
+├── substack-save/   ← submodule for downloading posts
+├── analyzer.py      ← main script
 └── README.md
+```
+
+Clone with submodules:
+
+```bash
+git clone --recurse-submodules <repo-url>
+# or if already cloned:
+git submodule update --init
 ```
 
 ## Download Posts
 
 ```bash
-cd /path/to/substack-save
-python3 -m substack_save.cli newsletter.smashelito.com /path/to/smashelito-trader/posts --limit 10 --skip-existing
+cd smashelito-trader
+python3 -m substack_save.cli newsletter.smashelito.com ./posts --limit 10 --skip-existing
 ```
 
 ## Analyze

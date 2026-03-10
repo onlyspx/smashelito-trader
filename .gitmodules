@@ -1,0 +1,3 @@
+[submodule "substack-save"]
+	path = substack-save
+	url = git@personal:onlyspx/substack-save.git
