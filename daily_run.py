@@ -34,7 +34,7 @@ def fetch_posts():
     """Run substack_save to download any new posts."""
     cmd = [
         sys.executable, "-m", "substack_save.cli",
-        NEWSLETTER, str(POSTS_DIR), "--skip-existing",
+        NEWSLETTER, str(POSTS_DIR), "--skip-existing", "--limit", "5",
     ]
     result = subprocess.run(cmd, capture_output=True, text=True)
     if result.returncode != 0:

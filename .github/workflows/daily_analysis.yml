@@ -26,10 +26,6 @@ jobs:
           cd substack-save
           pip install -e .
 
-      - name: Fetch new posts
-        run: |
-          python3 -m substack_save.cli newsletter.smashelito.com ./posts --skip-existing
-
       - name: Run daily analysis
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
