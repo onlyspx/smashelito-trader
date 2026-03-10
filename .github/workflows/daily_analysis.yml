@@ -5,6 +5,9 @@ on:
     - cron: '30 13 * * 1-5'   # 8:30am ET (UTC-5), weekdays only
   workflow_dispatch:             # allow manual trigger
 
+permissions:
+  contents: write
+
 jobs:
   analyze:
     runs-on: ubuntu-latest
@@ -19,7 +22,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.13'
 
       - name: Install substack_save
         run: |
