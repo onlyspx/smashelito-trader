@@ -1,0 +1,26 @@
+{
+  "title": "ES Daily Plan | March 16, 2026",
+  "plan_for_date": "2026-03-16",
+  "fetched_at": "2026-03-16T14:44:44",
+  "fair_value": 52.97,
+  "es_levels": {
+    "smashlevel": 6692,
+    "ut1": 6716,
+    "ut2": 6749,
+    "fut": 6770,
+    "dt1": 6665,
+    "dt2": 6636,
+    "fdt": 6600,
+    "vix_strength": 25.1,
+    "vix_weakness": 29.32
+  },
+  "spx_levels": {
+    "smashlevel": 6639.03,
+    "ut1": 6663.03,
+    "ut2": 6696.03,
+    "fut": 6717.03,
+    "dt1": 6612.03,
+    "dt2": 6583.03,
+    "fdt": 6547.03
+  }
+}
