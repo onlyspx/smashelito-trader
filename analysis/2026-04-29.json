@@ -1,0 +1,24 @@
+{
+  "title": "ES Daily Plan | April 29, 2026",
+  "plan_for_date": "2026-04-29",
+  "fetched_at": "2026-04-29T15:33:00",
+  "fair_value": 29.42,
+  "es_levels": {
+    "smashlevel": 7156,
+    "ut1": 7180,
+    "ut2": 7208,
+    "fut": 7230,
+    "dt1": 7126,
+    "fdt": 7092,
+    "vix_strength": 16.82,
+    "vix_weakness": 18.84
+  },
+  "spx_levels": {
+    "smashlevel": 7126.58,
+    "ut1": 7150.58,
+    "ut2": 7178.58,
+    "fut": 7200.58,
+    "dt1": 7096.58,
+    "fdt": 7062.58
+  }
+}
