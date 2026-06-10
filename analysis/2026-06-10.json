@@ -1,0 +1,22 @@
+{
+  "title": "ES Daily Plan | June 10, 2026",
+  "plan_for_date": "2026-06-10",
+  "fetched_at": "2026-06-10T16:46:33",
+  "fair_value": 6.0,
+  "es_levels": {
+    "ut1": 7415,
+    "ut2": 7455,
+    "fut": 7478,
+    "dt1": 7354,
+    "fdt": 7308,
+    "vix_strength": 18.84,
+    "vix_weakness": 20.9
+  },
+  "spx_levels": {
+    "ut1": 7409.0,
+    "ut2": 7449.0,
+    "fut": 7472.0,
+    "dt1": 7348.0,
+    "fdt": 7302.0
+  }
+}
