@@ -1,0 +1,22 @@
+{
+  "title": "ES Daily Plan | July 2, 2026",
+  "plan_for_date": "2026-07-02",
+  "fetched_at": "2026-07-02T15:39:52",
+  "fair_value": 6.0,
+  "es_levels": {
+    "ut1": 7560,
+    "ut2": 7579,
+    "fut": 7613,
+    "dt1": 7515,
+    "fdt": 7490,
+    "vix_strength": 15.82,
+    "vix_weakness": 17.36
+  },
+  "spx_levels": {
+    "ut1": 7554.0,
+    "ut2": 7573.0,
+    "fut": 7607.0,
+    "dt1": 7509.0,
+    "fdt": 7484.0
+  }
+}
