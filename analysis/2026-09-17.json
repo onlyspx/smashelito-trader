@@ -1,0 +1,22 @@
+{
+  "title": "ES Daily Plan | September 17, 2026",
+  "plan_for_date": "2026-09-17",
+  "fetched_at": "2026-09-17T17:41:31",
+  "fair_value": 6.0,
+  "es_levels": {
+    "ut1": 7669,
+    "fut": 7690,
+    "dt1": 7607,
+    "dt2": 7589,
+    "fdt": 7567,
+    "vix_strength": 16.82,
+    "vix_weakness": 18.62
+  },
+  "spx_levels": {
+    "ut1": 7663.0,
+    "fut": 7684.0,
+    "dt1": 7601.0,
+    "dt2": 7583.0,
+    "fdt": 7561.0
+  }
+}
