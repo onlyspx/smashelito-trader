@@ -1,0 +1,22 @@
+{
+  "title": "ES Daily Plan | October 5, 2026",
+  "plan_for_date": "2026-10-05",
+  "fetched_at": "2026-10-05T21:16:39",
+  "fair_value": 6.0,
+  "es_levels": {
+    "ut1": 7783,
+    "ut2": 7809,
+    "fut": 7838,
+    "dt1": 7741,
+    "fdt": 7709,
+    "vix_strength": 14.58,
+    "vix_weakness": 16.04
+  },
+  "spx_levels": {
+    "ut1": 7777.0,
+    "ut2": 7803.0,
+    "fut": 7832.0,
+    "dt1": 7735.0,
+    "fdt": 7703.0
+  }
+}
