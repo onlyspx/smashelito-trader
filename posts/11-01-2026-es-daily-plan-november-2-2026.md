@@ -1,0 +1,13 @@
+# ES Daily Plan | November 2, 2026
+
+*Market Context & Key Levels for the Day Ahead*
+
+**Published:** 2026-11-01
+
+**URL:** https://newsletter.smashelito.com/p/es-daily-plan-november-2-2026
+
+---
+
+**For New Subscribers**: The yellow levels highlighted at the bottom left of the chart are the primary intraday levels I focus on. To avoid impulsive decisions at poor trade locations, I follow a simple but effective rule: exercise caution when initiating trades outside of these yellow levels.
+
+This means I’m cautious about chasing longs above the Final Upsid…
